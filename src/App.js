@@ -27,7 +27,16 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
+    try {
+      api.delete(`repositories/${id}`);
+      setRepositories(
+        repositories.filter((repository) => {
+          return repository.id !== id ? true : false;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
